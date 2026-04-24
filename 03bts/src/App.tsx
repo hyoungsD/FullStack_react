@@ -1,7 +1,8 @@
-
+import React from 'react';
 import './App.css'
 import type { Member } from './types/Member';
 import MemberCard from './component/MemberCard';
+import BTS from  './component/BTS';
 
 const members: Member[] = [
   { image: '/bts/bts1.png', nick: 'RM'},
@@ -16,11 +17,23 @@ const members: Member[] = [
 function App() {
 
   return (
-    <div className='card-wrap'>
-      <MemberCard member={members[0]} />
-      <MemberCard member={members[1]} />
-      <MemberCard member={members[2]} />
-    </div>
+    <>
+      <div className='card-wrap'>
+        <MemberCard member={members[0]} />
+        <MemberCard member={members[1]} />
+        <MemberCard member={members[2]} />
+      </div>
+      <div className="nav-card-wrap">
+        <BTS members={members} />
+      </div>
+      <div>
+        {members.map((member) => (
+          <React.Fragment key={member.nick}>
+            <MemberCard member={member} />
+          </React.Fragment>
+        ))}
+      </div>
+    </>
   )
 }
 

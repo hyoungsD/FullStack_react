@@ -4,6 +4,8 @@ import Fruits from './component/Fruits'
 import Welcome from './component/Welcome'
 import SayHello from './component/SayHello'
 import Library from './component/Library'
+import EventBasic from './component/EventBasic'
+
 
 function App() {
 
@@ -16,6 +18,9 @@ function App() {
       <Welcome name='BTS' />
       <SayHello myName='오이영' to='React' />
       <Library />
+      <EventBasic type='date' />
+      <EventBasic type='time' />
+      <EventBasic type='all' />
     </>
   )
 }
