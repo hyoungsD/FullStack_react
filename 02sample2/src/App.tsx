@@ -5,6 +5,7 @@ import Welcome from './component/Welcome'
 import SayHello from './component/SayHello'
 import Library from './component/Library'
 import EventBasic from './component/EventBasic'
+import LoginControl from './component/LoginControl'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <EventBasic type='date' />
       <EventBasic type='time' />
       <EventBasic type='all' />
+      <LoginControl />
     </>
   )
 }

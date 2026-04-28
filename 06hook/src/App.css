@@ -1,0 +1,13 @@
+#root > div + div{
+  margin-top: 2rem;
+}
+
+h2{
+  margin: .5rem 0 .2rem;
+  font-size: 1.3rem;
+}
+
+button{
+  padding: .3rem 1rem;
+  cursor: pointer;
+}
