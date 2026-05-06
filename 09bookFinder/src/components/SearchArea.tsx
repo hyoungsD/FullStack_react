@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch';
 import SearchBar from './SearchBar';
 import BookList from './BookList';
 import Pagination from './Pagination';
-import './SearchArea.css'
+import '../css/SearchArea.css'
 
 export default function SearchArea() {
   // const [documents, setDocuments] = useState<Book[]>([]);

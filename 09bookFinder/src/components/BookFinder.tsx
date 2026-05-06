@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import BookContext from '../contexts/BookContext'
 import type { Book } from '../types/Book'
-import './BookFinder.css'
+import '../css/BookFinder.css'
 import Header from './Header'
 import Footer from './Footer'
 import SearchArea from './SearchArea'

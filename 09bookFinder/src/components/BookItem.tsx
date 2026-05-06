@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import type { Book } from '../types/Book';
 import BookContext from '../contexts/BookContext';
-import './BookItem.css'
+import '../css/BookItem.css'
 
 interface BookItemProps {
   book: Book;

@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import './SearchBar.css'
+import '../css/SearchBar.css'
 
 interface SearchBarProps {
   onChangeQuery: (q:string) => void;

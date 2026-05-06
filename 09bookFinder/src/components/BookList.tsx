@@ -1,6 +1,6 @@
 import type { Book } from '../types/Book'
 import BookItem from './BookItem'
-import './BookList.css'
+import '../css/BookList.css'
 
 interface BookListProps {
   books: Book[];
