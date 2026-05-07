@@ -1,0 +1,13 @@
+
+.todolist .searchbar{
+  /* margin-bottom: 10px; */
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #a5a5a5;
+  padding: 15px 0;
+}
+
+.todolist .searchbar:focus{
+  outline: 0;
+  border-bottom-color: #1f93ff;
+}

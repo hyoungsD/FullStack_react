@@ -1,11 +1,12 @@
 import {useContext, useMemo, useState} from 'react';
-import { TodoStatusContext } from '../context/TodoContext';
+import { TodoStateContext } from '../context/TodoContext';
 import TodoItem from './TodoItem'
 import './TodoList.css'
 
 
+
 function TodoList() {
-  const {todos} = useContext(TodoStatusContext);
+  const {todos} = useContext(TodoStateContext);
 
   const [search, setSearch] = useState<string>('');
 
@@ -21,16 +22,24 @@ function TodoList() {
     // 대소문자를 가리기 때문에 toLowerCase()를 이용하여 모두 소문자로 바꾼 후 필터링
     return search === '' ? todos : todos.filter((todo) => todo.content.toLowerCase().includes(search.toLowerCase()));
   }
-  
+
+
+  // Todo 갯수 확인 
+  // todos가 바뀔때만 호출되어야하기 때문에 useMemo
+  // useMemo가 없으면 검색어 입력할 때도 호출
   const analyzeTodo = useMemo(() => {
-    const totalCount = todos.length;
-    const doneCount = todos.filter((todo) => todo.isDone).length;
-    const notDoneCount = totalCount - doneCount;
+    console.log('-- analyzeTodo 호출 --');
+    const totalCount = todos.length;  // 전체 건수
+    const doneCount = todos.filter((todo) => todo.isDone).length; // 완료된 건수
+    const notDoneCount = totalCount - doneCount;  // 미완료 건수
     return {
-      totalCount, doneCount, notDoneCount
+      totalCount,
+      doneCount,
+      notDoneCount
     }
   }, [todos]);
-  const {totalCount, doneCount, notDoneCount} = analyzeTodo;
+  const {totalCount, doneCount, notDoneCount} = analyzeTodo;  // useMemo는 함수가 아니니까 analyzeTodo() 하면 안됨
+
 
   return (
     <div className='todolist'>

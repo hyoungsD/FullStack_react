@@ -1,5 +1,5 @@
-import { useRef, useMemo, useCallback, useReducer } from 'react'
-import { TodoStatusContext, TodoDispatchContext } from './context/TodoContext'
+import { useRef, useReducer, useCallback, useMemo } from 'react'
+import { TodoStateContext, TodoDispatchContext } from './context/TodoContext'
 import './App.css'
 import Header from './components/Header'
 import TodoEditor from './components/TodoEditor'
@@ -13,33 +13,40 @@ export interface Todo {
   createDate: number;
 }
 
-type Action =
+
+// useReducer용 action type
+type Action = 
   | {type: 'CREATE', newItem: Todo}
   | {type: 'UPDATE', targetId: number}
   | {type: 'DELETE', targetId: number}
 
+
+// useReducer 사용한 추가, 수정, 삭제
 function reducer(todos:Todo[], action:Action){
   let result;
-  switch(action.type){
-    case 'CREATE':
-      result = [action.newItem, ...todos];
+  switch (action.type){
+    case 'CREATE': {
+      result = [action.newItem, ...todos]
       break;
-    case 'UPDATE':
+    }
+    case 'UPDATE': {
       result = todos.map((todo) => 
-        todo.id === action.targetId ? {...todo, isDone : !todo.isDone} : todo
-      )
+          todo.id === action.targetId ? {...todo, isDone : !todo.isDone} : todo
+          // id가 같으면 todo의 isDone만 반대로 넣음
+        )
       break;
-    case 'DELETE':
-      result = todos.filter((todo) => todo.id !== action.targetId)
+    }
+    case 'DELETE': {
+      result = todos.filter((todo) => todo.id !== action.targetId)  // id가 같지 않은 것만 보내줌
       break;
-    default: 
-      result = todos;
+    }
+    default: result = todos;
   }
+  // localStorage에 저장
+  // 객체의 배열을 json으로 바꾸어서 저장
   localStorage.setItem('todos', JSON.stringify(result));
   return result;
-}
-
-
+} 
 
 function App() {
   const stored = localStorage.getItem('todos');
@@ -66,6 +73,7 @@ function App() {
   // 수정
   // id를 넘겨받아서 비교
   // todoList > todoItem에서 사용
+  // useCallback 사용(onCreate했을 때 추가된 것만 업데이트)
   const onUpdate = useCallback((targetId: number) => {
     dispatch({type: 'UPDATE', targetId});
   }, []);
@@ -73,23 +81,30 @@ function App() {
   // 삭제
   // id를 넘겨받아서 비교
   // todoList > todoItem에서 사용
+  // useCallback 사용(onCreate했을 때 추가된 것만 업데이트)
   const onDelete = useCallback((targetId: number) => {
     dispatch({type: 'DELETE', targetId});
   }, []);
 
-  const dispatches = useMemo(() => (
-    {onCreate, onUpdate, onDelete}
-  ), [onCreate, onUpdate, onDelete])
+
+  // Context로 내려줄 함수 묶음을 메모이제이션한 객체
+  // onCreate, onUpdate, onDelete를 하나의 객체로 묶고, 불필요하게 새 객체가 생성되지 않도록 useMemo로 캐싱하는 역할
+  const dispatches = useMemo(
+    // {onCreate, onUpdate, onDelete})
+    () => ({onCreate, onUpdate, onDelete})
+    , [onCreate, onUpdate, onDelete]
+  );
 
   return (
     <div className='app'>
       <Header />
-      <TodoStatusContext.Provider value={{todos}}>
+      <TodoStateContext.Provider value={{todos}}>
         <TodoDispatchContext.Provider value={dispatches}>
           <TodoEditor />
           <TodoList />
         </TodoDispatchContext.Provider>
-      </TodoStatusContext.Provider>
+      </TodoStateContext.Provider>
+        
     </div>
   )
 }
