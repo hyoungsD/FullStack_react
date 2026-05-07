@@ -2,3 +2,7 @@
 .header h1{
   color: #176ecb;
 }
+
+.today-container{
+  display: flex;
+}

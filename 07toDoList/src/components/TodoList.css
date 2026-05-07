@@ -1,4 +1,16 @@
 
+.count-container{
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  background-color: #f8f8f8;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.3rem;
+}
+.count-container p{
+  margin: 0.2rem 0;
+}
+
+
 .todolist .searchbar{
   /* margin-bottom: 10px; */
   width: 100%;
@@ -11,3 +23,4 @@
   outline: 0;
   border-bottom-color: #1f93ff;
 }
+

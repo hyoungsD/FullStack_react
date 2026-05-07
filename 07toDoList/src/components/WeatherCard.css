@@ -1,0 +1,13 @@
+
+.weather-container{
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: #676767;
+}
+
+.weather img{
+  width: 2rem;
+  height: 2rem;
+}

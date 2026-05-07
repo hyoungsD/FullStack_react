@@ -35,10 +35,10 @@ function TodoList() {
   return (
     <div className='todolist'>
       <h4>Todo List</h4>
-      <div>
-        <div>총 개수: {totalCount}</div>
-        <div>완료된 할일: {doneCount}</div>
-        <div>아직 완료하지 못한 할일: {notDoneCount}</div>
+      <div className='count-container'>
+        <p>총 개수: {totalCount}</p>
+        <p>완료된 할일: {doneCount}</p>
+        <p>아직 완료하지 못한 할일: {notDoneCount}</p>
       </div>
       <input 
         type="text" 
